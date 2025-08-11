@@ -10,7 +10,7 @@ from time import sleep
 api_id = '22718448'
 api_hash = 'aacff9e7028153dce900d87e00adfad1'
 phone = '+6281374050106'
-group_ids = ["@group1","@group2"]  
+group_usernames = ["@testingzz22","@testingz90"]  
 trigger = ["test1", "test2","test3"]
 auto = ["test4", "test5","test6"]
 
@@ -61,6 +61,7 @@ async def main():
 
 # ====== Entry Point ======
 asyncio.run(main())
+
 
 
 
