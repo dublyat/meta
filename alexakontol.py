@@ -22,8 +22,8 @@ async def send_random_messages():
 
       while True:
         for group_id in group_ids:
-            message_content = random.choice(messages)
-            message = await client.send_message(group_id, auto)        
+            message_content = random.choice(auto)
+            message = await client.send_message(group_id, message_content)        
             await asyncio.sleep(random.randint(10,20))
             await message.delete()
 
@@ -60,6 +60,7 @@ async def main():
 
 # ====== Entry Point ======
 asyncio.run(main())
+
 
 
 
