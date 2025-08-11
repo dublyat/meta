@@ -25,7 +25,6 @@ async def send_random_messages():
             message_content = random.choice(auto)
             message = await client.send_message(group_id, message_content)        
             await asyncio.sleep(random.randint(10,20))
-            await message.delete()
 
 async def my_event_handler(event):
     chat_id = event.chat_id
@@ -60,6 +59,7 @@ async def main():
 
 # ====== Entry Point ======
 asyncio.run(main())
+
 
 
 
