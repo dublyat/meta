@@ -10,7 +10,7 @@ from time import sleep
 api_id = '22718448'
 api_hash = 'aacff9e7028153dce900d87e00adfad1'
 phone = '+6281374050106'
-group_ids = ["@gctestsaa1","@gctestsaa2",-4242927569]  
+group_ids = ["@brimolly"]  
 trigger = ["test1", "test2","test3"]
 auto = ["test4", "test5","test6"]
 
@@ -54,6 +54,7 @@ async def main():
 
 with client:
     client.loop.run_until_complete(main())
+
 
 
 
