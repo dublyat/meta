@@ -10,7 +10,7 @@ from time import sleep
 api_id = '22718448'
 api_hash = 'aacff9e7028153dce900d87e00adfad1'
 phone = '+6281374050106'
-group_ids = ["@brimolly"]  
+group_ids = ["@group1","@group2"]  
 trigger = ["test1", "test2","test3"]
 auto = ["test4", "test5","test6"]
 
@@ -19,11 +19,13 @@ client = TelegramClient('anon', api_id, api_hash)
 ###############INPUT PART###############
 
 async def send_random_messages():
+    groups = [await client.get_entity(username) for username in group_usernames]
+
     while True:
-        for group_id in group_ids:
+        for group in groups:
             message_content = random.choice(auto)
-            message = await client.send_message(group_id, message_content)        
-            await asyncio.sleep(random.randint(10,20))
+            message = await client.send_message(group, message_content)
+            await asyncio.sleep(random.randint(10, 20))
             await message.delete()
 
 async def my_event_handler(event):
@@ -45,24 +47,20 @@ async def main():
         await client.send_code_request(phone)
         code = input('Enter the code: ')
         await client.sign_in(phone, code)
-   
-    print("Starting message sender...")
-    await send_random_messages()  
 
+    print("STARTING META")
+
+    # Start message sending in the background
+    asyncio.create_task(send_random_messages())
+
+    # Register the message handler
     client.add_event_handler(my_event_handler, events.NewMessage)
+
+    # Run the client until disconnected
     await client.run_until_disconnected()
 
-with client:
-    client.loop.run_until_complete(main())
-
-
-
-
-
-
-
-
-
+# ====== Entry Point ======
+asyncio.run(main())
 
 
 
