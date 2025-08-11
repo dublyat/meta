@@ -10,7 +10,7 @@ from time import sleep
 api_id = '22718448'
 api_hash = 'aacff9e7028153dce900d87e00adfad1'
 phone = '+6281374050106'
-group_usernames = ['@testingzz22','@testingz90']  
+group_ids = ["@testingzz22","@testingz90"]  
 trigger = ["test1", "test2","test3"]
 auto = ["test4", "test5","test6"]
 
@@ -19,13 +19,12 @@ client = TelegramClient('anon', api_id, api_hash)
 ###############INPUT PART###############
 
 async def send_random_messages():
-    groups = [await client.get_entity(username) for username in group_usernames]
 
-    while True:
-        for group in groups:
-            message_content = random.choice(auto)
-            message = await client.send_message(group, message_content)
-            await asyncio.sleep(random.randint(10, 20))
+      while True:
+        for group_id in group_ids:
+            message_content = random.choice(messages)
+            message = await client.send_message(group_id, auto)        
+            await asyncio.sleep(random.randint(10,20))
             await message.delete()
 
 async def my_event_handler(event):
@@ -61,6 +60,7 @@ async def main():
 
 # ====== Entry Point ======
 asyncio.run(main())
+
 
 
 
