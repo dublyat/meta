@@ -11,8 +11,8 @@ api_id = '22718448'
 api_hash = 'aacff9e7028153dce900d87e00adfad1'
 phone = '+6281374050106'
 group_ids = ["@testingzz22","@testingz90"]  
-trigger = ["test1", "test2","test3"]
-automsg = ["test4", "test5","test6"]
+trigger = ["test1","test2","test3"]
+automsg = ["test4","test5","test6"]
 
 client = TelegramClient('anon', api_id, api_hash)
 
@@ -22,8 +22,8 @@ async def send_random_messages():
 
       while True:
         for group_id in group_ids:
-            message_content = random.choice(automsg)
-            message = await client.send_message(group_id, message_content)        
+            message_auto = random.choice(automsg)
+            message = await client.send_message(group_id, message_auto)        
             await asyncio.sleep(random.randint(10,20))
 
 async def my_event_handler(event):
@@ -59,6 +59,7 @@ async def main():
 
 # ====== Entry Point ======
 asyncio.run(main())
+
 
 
 
